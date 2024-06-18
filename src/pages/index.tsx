@@ -1,5 +1,9 @@
 const Home = () => {
-  return <main>Easy-Menu</main>;
+  return (
+    <main>
+      <button className="btn btn-primary">Easy-Menu</button>
+    </main>
+  );
 };
 
 export default Home;
