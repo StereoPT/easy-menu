@@ -1,9 +1,9 @@
-import MenuForm from '@/components/MenuForm/MenuForm';
+import MenuBuilder from '@/components/MenuBuilder/MenuBuilder';
 
 const Home = () => {
   return (
     <main className="flex justify-center gap-4 p-4">
-      <MenuForm />
+      <MenuBuilder />
       <div className="flex justify-center basis-1/2">Menu Preview</div>
     </main>
   );
