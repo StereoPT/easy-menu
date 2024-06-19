@@ -1,7 +1,10 @@
+import MenuForm from '@/components/MenuForm/MenuForm';
+
 const Home = () => {
   return (
-    <main>
-      <button className="btn btn-primary">Easy-Menu</button>
+    <main className="flex justify-center gap-4 p-4">
+      <MenuForm />
+      <div className="flex justify-center basis-1/2">Menu Preview</div>
     </main>
   );
 };
