@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col items-center gap-16 p-4">
+      <main className="flex flex-col items-center gap-16 p-4 mt-12">
         <MenuBuilder />
         <div className="flex justify-center">
           {isMenuCreated && (
