@@ -1,10 +1,11 @@
 import MenuBuilder from '@/components/MenuBuilder/MenuBuilder';
+import MenuPreview from '@/components/MenuPreview/MenuPreview';
 
 const Home = () => {
   return (
     <main className="flex justify-center gap-4 p-4">
       <MenuBuilder />
-      <div className="flex justify-center basis-1/2">Menu Preview</div>
+      <MenuPreview />
     </main>
   );
 };

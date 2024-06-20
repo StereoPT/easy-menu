@@ -1,12 +1,16 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useSetAtom } from 'jotai';
 
 import MenuHeader from './MenuHeader/MenuHeader';
 import MenuItem from './MenuItem/MenuItem';
 
+import { menuAtom } from '@/store/menu.atom';
+
 import { MenuFormInputs, menuFormSchema } from '@/schemas/menuForm';
 
 const MenuBuilder = () => {
+  const setMenuAtom = useSetAtom(menuAtom);
   const methods = useForm<MenuFormInputs>({
     resolver: yupResolver(menuFormSchema),
   });
@@ -14,7 +18,7 @@ const MenuBuilder = () => {
   const { handleSubmit } = methods;
 
   const onFormSubmit: SubmitHandler<MenuFormInputs> = (values) => {
-    alert(JSON.stringify(values, null, 2));
+    setMenuAtom(values);
   };
 
   return (
