@@ -8,13 +8,8 @@ import { styles } from './styles';
 Font.register({
   family: 'Inter',
   fonts: [
-    {
-      src: '/fonts/Inter-Regular.ttf',
-    },
-    {
-      src: '/fonts/Inter-SemiBold.ttf',
-      fontWeight: 'semibold',
-    },
+    { src: '/fonts/Inter-Regular.ttf' },
+    { src: '/fonts/Inter-SemiBold.ttf', fontWeight: 'semibold' },
   ],
 });
 
