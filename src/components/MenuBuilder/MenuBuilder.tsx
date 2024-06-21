@@ -21,6 +21,7 @@ const MenuBuilder = () => {
 
   const resetForm = () => {
     reset();
+    setMenuCreated(false);
   };
 
   const onFormSubmit: SubmitHandler<MenuFormInputs> = (values) => {
