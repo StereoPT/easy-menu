@@ -1,5 +1,6 @@
 import dynamic from 'next/dynamic';
 
+import { Button } from 'react-daisyui';
 import MenuBuilder from '@/components/MenuBuilder/MenuBuilder';
 import MenuPDF from '@/components/MenuPDF/MenuPDF';
 
@@ -28,12 +29,9 @@ const Home = () => {
             <div>
               <PDFDownloadLink document={<MenuPDF />} fileName="easy-menu.pdf">
                 {({ blob, url, loading, error }) => (
-                  <button className="btn btn-primary" disabled={loading}>
-                    {loading && (
-                      <span className="loading loading-spinner"></span>
-                    )}
+                  <Button color="primary" loading={loading} disabled={loading}>
                     Download Now
-                  </button>
+                  </Button>
                 )}
               </PDFDownloadLink>
             </div>

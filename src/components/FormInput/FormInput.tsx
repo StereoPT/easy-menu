@@ -1,3 +1,4 @@
+import { Input } from 'react-daisyui';
 import { useFormContext } from 'react-hook-form';
 
 import { cn } from '@/utils/cn';
@@ -7,6 +8,7 @@ type FormInputProps = {
   placeholder: string;
   label?: string;
   required?: boolean;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
 };
 
 const FormInput = ({
@@ -14,6 +16,7 @@ const FormInput = ({
   label,
   placeholder,
   required = false,
+  size = 'md',
 }: FormInputProps) => {
   const {
     register,
@@ -32,15 +35,13 @@ const FormInput = ({
           </span>
         </div>
       )}
-      <input
+      <Input
         type="text"
         id={name}
-        {...register(name)}
         placeholder={placeholder}
-        className={cn(
-          'input input-bordered w-full max-w-xs',
-          inputError && 'input-error',
-        )}
+        size={size}
+        color={inputError ? 'error' : 'neutral'}
+        {...register(name)}
       />
       {inputError && (
         <div className="label">

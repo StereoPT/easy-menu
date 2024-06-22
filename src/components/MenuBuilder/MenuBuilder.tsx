@@ -8,6 +8,7 @@ import MenuItem from './MenuItem/MenuItem';
 import { menuAtom, menuCreated } from '@/store/menu.atom';
 
 import { MenuFormInputs, menuFormSchema } from '@/schemas/menuForm';
+import { Button, Card } from 'react-daisyui';
 
 const MenuBuilder = () => {
   const setMenuAtom = useSetAtom(menuAtom);
@@ -30,8 +31,8 @@ const MenuBuilder = () => {
   };
 
   return (
-    <div className="card border border-base-200 border-opacity-20 bg-base-100 shadow-lg w-[560px]">
-      <div className="card-body">
+    <Card className="border border-base-200 border-opacity-20 bg-base-100 shadow-lg w-[560px]">
+      <Card.Body>
         <h2 className="card-title">Create Menu</h2>
         <p className="mb-4">Fill the form to create your personal menu.</p>
         <FormProvider {...methods}>
@@ -42,18 +43,18 @@ const MenuBuilder = () => {
               <MenuHeader />
               <MenuItem />
               <div className="card-actions justify-end">
-                <button className="btn btn-neutral" onClick={resetForm}>
+                <Button color="neutral" onClick={resetForm}>
                   Reset
-                </button>
-                <button type="submit" className="btn btn-primary">
+                </Button>
+                <Button type="submit" color="primary">
                   Create
-                </button>
+                </Button>
               </div>
             </div>
           </form>
         </FormProvider>
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 
