@@ -26,7 +26,7 @@ const FormInput = ({
   const inputError = errors[name];
 
   return (
-    <label htmlFor={name} className="form-control w-full max-w-xs">
+    <label htmlFor={name} className="form-control w-full">
       {label && (
         <div className="label">
           <span className={cn('label-text', inputError && 'text-error')}>
