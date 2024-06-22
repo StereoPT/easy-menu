@@ -1,34 +1,43 @@
+import {
+  Badge,
+  Button,
+  Navbar as DaisyNavbar,
+  Dropdown,
+  Indicator,
+} from 'react-daisyui';
 import { FiBell, FiMenu } from 'react-icons/fi';
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-neutral text-neutral-content">
-      <div className="navbar-start">
-        <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+    <DaisyNavbar className="bg-neutral text-neutral-content">
+      <DaisyNavbar.Start>
+        <Dropdown>
+          <Button tag="label" color="ghost" shape="circle" tabIndex={0}>
             <FiMenu size={20} />
-          </div>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-neutral rounded-box w-52">
-            <li>Homepage</li>
-          </ul>
-        </div>
-      </div>
-      <div className="navbar-center">
-        <a href="#" className="btn btn-ghost text-xl">
+          </Button>
+          <Dropdown.Menu className="menu-sm w-52 mt-3 z-[1] bg-neutral">
+            <Dropdown.Item>Homepage</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      </DaisyNavbar.Start>
+      <DaisyNavbar.Center>
+        <Button tag="a" color="ghost" className="normal-case text-xl" href="#">
           Easy-Menu
-        </a>
-      </div>
-      <div className="navbar-end">
-        <button className="btn btn-ghost btn-circle">
-          <div className="indicator">
+        </Button>
+      </DaisyNavbar.Center>
+      <DaisyNavbar.End>
+        <Button color="ghost" shape="circle">
+          <Indicator>
+            <Badge
+              size="xs"
+              color="primary"
+              className={Indicator.Item.className()}
+            />
             <FiBell size={20} />
-            <span className="badge badge-xs badge-primary indicator-item" />
-          </div>
-        </button>
-      </div>
-    </div>
+          </Indicator>
+        </Button>
+      </DaisyNavbar.End>
+    </DaisyNavbar>
   );
 };
 

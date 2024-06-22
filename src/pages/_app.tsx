@@ -1,6 +1,7 @@
 import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
+import { Theme } from 'react-daisyui';
 
 import '@/styles/globals.css';
 
@@ -23,7 +24,9 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
         <title>Easy-Menu</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport" />
       </Head>
-      {getLayout(<Component {...pageProps} />)}
+      <Theme dataTheme="emerald">
+        {getLayout(<Component {...pageProps} />)}
+      </Theme>
     </>
   );
 };
