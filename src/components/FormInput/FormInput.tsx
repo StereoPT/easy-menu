@@ -1,5 +1,5 @@
 import { Input } from 'react-daisyui';
-import { useFormContext } from 'react-hook-form';
+import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form';
 
 import { cn } from '@/utils/cn';
 
@@ -9,6 +9,17 @@ type FormInputProps = {
   label?: string;
   required?: boolean;
   size?: 'xs' | 'sm' | 'md' | 'lg';
+};
+
+const getErrors = (name: string, errors: FieldErrors<FieldValues>) => {
+  if (name.includes('.')) {
+    const [array, index, field] = name.split('.');
+    // TODO: Check this later
+    // @ts-ignore
+    return errors?.[array]?.[index]?.[field];
+  } else {
+    return errors?.[name];
+  }
 };
 
 const FormInput = ({
@@ -23,7 +34,7 @@ const FormInput = ({
     formState: { errors },
   } = useFormContext();
 
-  const inputError = errors[name];
+  const inputError = getErrors(name, errors);
 
   return (
     <label htmlFor={name} className="form-control w-full">
@@ -45,7 +56,7 @@ const FormInput = ({
       {inputError && (
         <div className="label">
           <span className="label-text-alt text-error">
-            {inputError?.message as string}
+            {inputError?.message}
           </span>
         </div>
       )}

@@ -5,13 +5,13 @@ const TitleMessages = {
 };
 
 const ProductNameMessages = {
-  required: 'Product Name is required!',
+  required: 'Name is required!',
 };
 
 const ProductPriceMessages = {
-  required: 'Product Price is required!',
-  number: 'Product Price must be a Number!',
-  min: 'Product Price must be greater than 0!',
+  required: 'Price is required!',
+  number: 'Price must be a Number!',
+  min: 'Price must be greater than 0!',
 };
 
 export const menuItemSchema = yup.object({

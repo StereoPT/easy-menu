@@ -23,6 +23,11 @@ const customCss: Styles = {
     fontFamily: 'Inter',
     color: '#333c4d',
   },
+  products: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+  },
   itemWrapper: {
     display: 'flex',
     flexDirection: 'row',
