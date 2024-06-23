@@ -1,4 +1,5 @@
-import { useFormContext } from 'react-hook-form';
+import { Input } from 'react-daisyui';
+import { FieldErrors, FieldValues, useFormContext } from 'react-hook-form';
 
 import { cn } from '@/utils/cn';
 
@@ -7,6 +8,18 @@ type FormInputProps = {
   placeholder: string;
   label?: string;
   required?: boolean;
+  size?: 'xs' | 'sm' | 'md' | 'lg';
+};
+
+const getErrors = (name: string, errors: FieldErrors<FieldValues>) => {
+  if (name.includes('.')) {
+    const [array, index, field] = name.split('.');
+    // TODO: Check this later
+    // @ts-ignore
+    return errors?.[array]?.[index]?.[field];
+  } else {
+    return errors?.[name];
+  }
 };
 
 const FormInput = ({
@@ -14,16 +27,17 @@ const FormInput = ({
   label,
   placeholder,
   required = false,
+  size = 'md',
 }: FormInputProps) => {
   const {
     register,
     formState: { errors },
   } = useFormContext();
 
-  const inputError = errors[name];
+  const inputError = getErrors(name, errors);
 
   return (
-    <label htmlFor={name} className="form-control w-full max-w-xs">
+    <label htmlFor={name} className="form-control w-full">
       {label && (
         <div className="label">
           <span className={cn('label-text', inputError && 'text-error')}>
@@ -32,20 +46,17 @@ const FormInput = ({
           </span>
         </div>
       )}
-      <input
-        type="text"
+      <Input
         id={name}
-        {...register(name)}
         placeholder={placeholder}
-        className={cn(
-          'input input-bordered w-full max-w-xs',
-          inputError && 'input-error',
-        )}
+        size={size}
+        color={inputError ? 'error' : 'neutral'}
+        {...register(name)}
       />
       {inputError && (
         <div className="label">
           <span className="label-text-alt text-error">
-            {inputError?.message as string}
+            {inputError?.message}
           </span>
         </div>
       )}

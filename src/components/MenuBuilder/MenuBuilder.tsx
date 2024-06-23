@@ -1,4 +1,9 @@
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  FormProvider,
+  SubmitHandler,
+  useFieldArray,
+  useForm,
+} from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useSetAtom } from 'jotai';
 
@@ -8,6 +13,8 @@ import MenuItem from './MenuItem/MenuItem';
 import { menuAtom, menuCreated } from '@/store/menu.atom';
 
 import { MenuFormInputs, menuFormSchema } from '@/schemas/menuForm';
+import { Button, Card } from 'react-daisyui';
+import { FiPlus } from 'react-icons/fi';
 
 const MenuBuilder = () => {
   const setMenuAtom = useSetAtom(menuAtom);
@@ -15,9 +22,25 @@ const MenuBuilder = () => {
 
   const methods = useForm<MenuFormInputs>({
     resolver: yupResolver(menuFormSchema),
+    defaultValues: {
+      products: [{}],
+    },
   });
 
-  const { handleSubmit, reset } = methods;
+  const { handleSubmit, reset, control } = methods;
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'products',
+  });
+
+  const addNewItem = () => {
+    append({
+      name: '',
+      description: '',
+      price: 0,
+    });
+  };
 
   const resetForm = () => {
     reset();
@@ -30,8 +53,8 @@ const MenuBuilder = () => {
   };
 
   return (
-    <div className="card border border-base-200 border-opacity-20 bg-base-100 shadow-lg w-[560px]">
-      <div className="card-body">
+    <Card className="border border-base-200 border-opacity-20 bg-base-100 shadow-lg w-[560px]">
+      <Card.Body>
         <h2 className="card-title">Create Menu</h2>
         <p className="mb-4">Fill the form to create your personal menu.</p>
         <FormProvider {...methods}>
@@ -40,20 +63,40 @@ const MenuBuilder = () => {
             onSubmit={handleSubmit(onFormSubmit)}>
             <div className="flex flex-col gap-8 w-full">
               <MenuHeader />
-              <MenuItem />
+              <div className="flex flex-col gap-2">
+                <div className="flex justify-end px-2">
+                  <Button
+                    type="button"
+                    size="sm"
+                    shape="square"
+                    color="primary"
+                    onClick={addNewItem}>
+                    <FiPlus size={20} />
+                  </Button>
+                </div>
+                {fields.map((field, index) => {
+                  return (
+                    <MenuItem
+                      key={field.id}
+                      itemIndex={index}
+                      removeItem={remove}
+                    />
+                  );
+                })}
+              </div>
               <div className="card-actions justify-end">
-                <button className="btn btn-neutral" onClick={resetForm}>
+                <Button type="button" color="neutral" onClick={resetForm}>
                   Reset
-                </button>
-                <button type="submit" className="btn btn-primary">
+                </Button>
+                <Button type="submit" color="primary">
                   Create
-                </button>
+                </Button>
               </div>
             </div>
           </form>
         </FormProvider>
-      </div>
-    </div>
+      </Card.Body>
+    </Card>
   );
 };
 

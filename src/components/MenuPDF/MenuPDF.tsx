@@ -23,14 +23,20 @@ const MenuPDF = () => {
           <Text style={styles.title}>{menu.title}</Text>
           <Text style={styles.subtitle}>{menu.subtitle}</Text>
         </View>
-        <View style={styles.itemWrapper}>
-          <View style={styles.itemWrapper2}>
-            <Text style={styles.productName}>{menu.productName}</Text>
-            <Text style={styles.productDescription}>
-              {menu.productDescription}
-            </Text>
-          </View>
-          <Text style={styles.productPrice}>{menu.productPrice} €</Text>
+        <View style={styles.products}>
+          {menu.products.map((product, index) => {
+            return (
+              <View key={`${product.name}_${index}`} style={styles.itemWrapper}>
+                <View style={styles.itemWrapper2}>
+                  <Text style={styles.productName}>{product.name}</Text>
+                  <Text style={styles.productDescription}>
+                    {product.description}
+                  </Text>
+                </View>
+                <Text style={styles.productPrice}>{product.price} €</Text>
+              </View>
+            );
+          })}
         </View>
       </Page>
     </Document>
