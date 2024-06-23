@@ -36,7 +36,6 @@ const FormInput = ({
         </div>
       )}
       <Input
-        type="text"
         id={name}
         placeholder={placeholder}
         size={size}
