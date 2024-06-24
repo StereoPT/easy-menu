@@ -12,4 +12,3 @@ export const menuAtom = atom<MenuFormInputs>({
     },
   ],
 });
-export const menuCreated = atom<boolean>(false);
