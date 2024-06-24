@@ -39,7 +39,7 @@ const MenuBuilder = () => {
 
   const { handleSubmit, reset, control } = methods;
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, append, move, remove } = useFieldArray({
     control,
     name: 'products',
   });
@@ -89,7 +89,9 @@ const MenuBuilder = () => {
                       <MenuItem
                         key={field.id}
                         itemIndex={index}
+                        itemAmount={fields.length}
                         removeItem={remove}
+                        moveItem={move}
                       />
                     );
                   })}
