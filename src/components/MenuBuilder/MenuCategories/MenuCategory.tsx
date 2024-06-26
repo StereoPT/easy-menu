@@ -1,6 +1,4 @@
-import { Control } from 'react-hook-form';
-import { MenuFormInputs } from '@/schemas/menuForm';
-
+import { UseFieldArrayRemove } from 'react-hook-form';
 import { Accordion, Button } from 'react-daisyui';
 
 import MenuItems from '../MenuItems/MenuItems';
@@ -9,10 +7,16 @@ import FormInput from '@/components/FormInput/FormInput';
 import { FiTrash2 } from 'react-icons/fi';
 
 type MenuCategoryProps = {
-  control: Control<MenuFormInputs>;
+  categoryIndex: number;
+  categoryAmount: number;
+  removeCategory: UseFieldArrayRemove;
 };
 
-const MenuCategory = ({ control }: MenuCategoryProps) => {
+const MenuCategory = ({
+  categoryIndex,
+  categoryAmount,
+  removeCategory,
+}: MenuCategoryProps) => {
   return (
     <Accordion
       className="border border-base-500 join-item"
@@ -24,11 +28,17 @@ const MenuCategory = ({ control }: MenuCategoryProps) => {
       <Accordion.Content className="flex flex-col gap-8">
         <div className="flex justify-between gap-2">
           <FormInput name="category" placeholder="Category Name" size="sm" />
-          <Button type="button" size="sm" shape="square" color="error">
+          <Button
+            type="button"
+            size="sm"
+            shape="square"
+            color="error"
+            disabled={categoryAmount <= 1}
+            onClick={() => removeCategory(categoryIndex)}>
             <FiTrash2 size={20} />
           </Button>
         </div>
-        <MenuItems control={control} arrayName="products" />
+        <MenuItems arrayName="products" />
       </Accordion.Content>
     </Accordion>
   );

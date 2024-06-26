@@ -6,7 +6,6 @@ import { useSetAtom } from 'jotai';
 import { menuAtom } from '@/store/menu.atom';
 
 import MenuHeader from './MenuHeader/MenuHeader';
-import MenuItems from './MenuItems/MenuItems';
 
 import { Button, Card } from 'react-daisyui';
 
@@ -20,11 +19,12 @@ const MenuBuilder = () => {
   const methods = useForm<MenuFormInputs>({
     resolver: yupResolver(menuFormSchema),
     defaultValues: {
+      categories: [{}],
       products: [{}],
     },
   });
 
-  const { control, handleSubmit, reset } = methods;
+  const { handleSubmit, reset } = methods;
 
   const {
     modal: menuModal,
@@ -55,7 +55,7 @@ const MenuBuilder = () => {
               onSubmit={handleSubmit(onFormSubmit)}>
               <div className="flex flex-col gap-8 w-full">
                 <MenuHeader />
-                <MenuCategories control={control} />
+                <MenuCategories />
                 <div className="card-actions justify-end">
                   <Button type="button" color="neutral" onClick={onFormReset}>
                     Reset

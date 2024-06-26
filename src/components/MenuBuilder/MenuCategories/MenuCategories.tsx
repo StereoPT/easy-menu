@@ -1,16 +1,23 @@
-import { Control } from 'react-hook-form';
-import { MenuFormInputs } from '@/schemas/menuForm';
+import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import { Button, Join } from 'react-daisyui';
 
 import { FiPlus } from 'react-icons/fi';
 import MenuCategory from './MenuCategory';
 
-type MenuCategoriesProps = {
-  control: Control<MenuFormInputs>;
-};
+const MenuCategories = () => {
+  const { control } = useFormContext();
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: 'categories',
+  });
 
-const MenuCategories = ({ control }: MenuCategoriesProps) => {
+  const addNewCategory = () => {
+    append({
+      name: '',
+    });
+  };
+
   return (
     <div className="flex flex-col gap-2">
       <div className="flex justify-end">
@@ -18,12 +25,22 @@ const MenuCategories = ({ control }: MenuCategoriesProps) => {
           type="button"
           size="sm"
           color="primary"
-          startIcon={<FiPlus size={20} />}>
+          startIcon={<FiPlus size={20} />}
+          onClick={addNewCategory}>
           Add Category
         </Button>
       </div>
       <Join className="w-full" vertical={true}>
-        <MenuCategory control={control} />
+        {fields.map((field, index) => {
+          return (
+            <MenuCategory
+              key={field.id}
+              categoryIndex={index}
+              categoryAmount={fields.length}
+              removeCategory={remove}
+            />
+          );
+        })}
       </Join>
     </div>
   );
