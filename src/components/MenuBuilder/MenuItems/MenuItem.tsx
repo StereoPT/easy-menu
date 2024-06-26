@@ -44,14 +44,14 @@ const MenuItem = ({
         <div className="w-full">
           <FormInput
             name={`${category}.items.${itemIndex}.name`}
-            placeholder="Product Name"
+            placeholder="Item Name"
             size="sm"
           />
         </div>
         <div className="w-full">
           <FormInput
             name={`${category}.items.${itemIndex}.description`}
-            placeholder="Product Description"
+            placeholder="Item Description"
             size="sm"
           />
         </div>
