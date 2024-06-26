@@ -4,6 +4,10 @@ const TitleMessages = {
   required: 'Menu Title is required!',
 };
 
+const CategoryMessages = {
+  required: 'Category Name is required!',
+};
+
 const ItemNameMessages = {
   required: 'Name is required!',
 };
@@ -26,7 +30,7 @@ export const menuItemSchema = yup.object({
 });
 
 export const menuCategorySchema = yup.object({
-  name: yup.string().trim().required(),
+  name: yup.string().trim().required(CategoryMessages.required),
   items: yup.array().min(1).of(menuItemSchema).required(),
 });
 
