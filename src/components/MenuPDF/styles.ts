@@ -23,7 +23,18 @@ const customCss: Styles = {
     fontFamily: 'Inter',
     color: '#333c4d',
   },
-  products: {
+  categories: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '24px',
+    marginHorizontal: '32px',
+  },
+  category: {
+    display: 'flex',
+    flexDirection: 'column',
+    gap: '16px',
+  },
+  items: {
     display: 'flex',
     flexDirection: 'column',
     gap: '16px',
@@ -38,18 +49,18 @@ const customCss: Styles = {
     display: 'flex',
     flexDirection: 'column',
   },
-  productName: {
+  itemName: {
     fontSize: '16px',
     fontFamily: 'Inter',
     fontWeight: 'semibold',
     color: '#333c4d',
   },
-  productDescription: {
+  itemDescription: {
     fontSize: '12px',
     fontFamily: 'Inter',
     color: '#333c4d',
   },
-  productPrice: {
+  itemPrice: {
     fontSize: '16px',
     fontFamily: 'Inter',
     color: '#333c4d',

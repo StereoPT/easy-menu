@@ -15,6 +15,7 @@ const MenuCategories = () => {
   const addNewCategory = () => {
     append({
       name: '',
+      items: [{}],
     });
   };
 
