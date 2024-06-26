@@ -4,11 +4,16 @@ import { atom } from 'jotai';
 export const menuAtom = atom<MenuFormInputs>({
   title: '',
   subtitle: '',
-  products: [
+  categories: [
     {
       name: '',
-      description: '',
-      price: 0,
+      products: [
+        {
+          name: '',
+          description: '',
+          price: 0,
+        },
+      ],
     },
   ],
 });

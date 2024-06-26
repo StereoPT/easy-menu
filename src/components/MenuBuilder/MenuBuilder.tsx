@@ -19,8 +19,7 @@ const MenuBuilder = () => {
   const methods = useForm<MenuFormInputs>({
     resolver: yupResolver(menuFormSchema),
     defaultValues: {
-      categories: [{}],
-      products: [{}],
+      categories: [{ products: [{}] }],
     },
   });
 
@@ -35,8 +34,9 @@ const MenuBuilder = () => {
   });
 
   const onFormSubmit: SubmitHandler<MenuFormInputs> = (values) => {
+    console.log(values);
     setMenuAtom(values);
-    openModal();
+    // openModal();
   };
 
   const onFormReset = () => {

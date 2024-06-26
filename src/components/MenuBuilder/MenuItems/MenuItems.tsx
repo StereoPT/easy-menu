@@ -6,14 +6,14 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 import MenuItem from './MenuItem';
 
 type MenuItemsProps = {
-  arrayName: 'products';
+  category: string;
 };
 
-const MenuItems = ({ arrayName }: MenuItemsProps) => {
+const MenuItems = ({ category }: MenuItemsProps) => {
   const { control } = useFormContext();
   const { fields, append, move, remove } = useFieldArray({
     control,
-    name: arrayName,
+    name: `${category}.products`,
   });
 
   const addNewItem = () => {
@@ -40,6 +40,7 @@ const MenuItems = ({ arrayName }: MenuItemsProps) => {
         return (
           <MenuItem
             key={field.id}
+            category={category}
             itemIndex={index}
             itemAmount={fields.length}
             removeItem={remove}

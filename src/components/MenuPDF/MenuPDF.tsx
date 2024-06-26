@@ -24,7 +24,7 @@ const MenuPDF = () => {
           <Text style={styles.subtitle}>{menu.subtitle}</Text>
         </View>
         <View style={styles.products}>
-          {menu.products.map((product, index) => {
+          {menu.categories[0].products.map((product, index) => {
             return (
               <View key={`${product.name}_${index}`} style={styles.itemWrapper}>
                 <View style={styles.itemWrapper2}>

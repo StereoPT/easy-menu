@@ -27,7 +27,11 @@ const MenuCategory = ({
       </Accordion.Title>
       <Accordion.Content className="flex flex-col gap-8">
         <div className="flex justify-between gap-2">
-          <FormInput name="category" placeholder="Category Name" size="sm" />
+          <FormInput
+            name={`categories.${categoryIndex}.name`}
+            placeholder="Category Name"
+            size="sm"
+          />
           <Button
             type="button"
             size="sm"
@@ -38,7 +42,7 @@ const MenuCategory = ({
             <FiTrash2 size={20} />
           </Button>
         </div>
-        <MenuItems arrayName="products" />
+        <MenuItems category={`categories.${categoryIndex}`} />
       </Accordion.Content>
     </Accordion>
   );
