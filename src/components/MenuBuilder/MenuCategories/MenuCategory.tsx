@@ -1,4 +1,4 @@
-import { UseFieldArrayRemove } from 'react-hook-form';
+import { UseFieldArrayRemove, useWatch } from 'react-hook-form';
 import { Accordion, Button } from 'react-daisyui';
 
 import MenuItems from '../MenuItems/MenuItems';
@@ -17,13 +17,15 @@ const MenuCategory = ({
   categoryAmount,
   removeCategory,
 }: MenuCategoryProps) => {
+  const categoryName = useWatch({ name: `categories.${categoryIndex}.name` });
+
   return (
     <Accordion
       className="border border-base-500 join-item"
       icon="arrow"
       defaultChecked>
       <Accordion.Title className="text-lg font-medium">
-        Category One
+        {categoryName || 'Category Name'}
       </Accordion.Title>
       <Accordion.Content className="flex flex-col gap-8">
         <div className="flex justify-between gap-2">
