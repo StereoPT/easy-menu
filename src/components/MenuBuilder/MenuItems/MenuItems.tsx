@@ -27,14 +27,14 @@ const MenuItems = ({ control, arrayName }: MenuItemsProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex justify-end px-2">
+      <div className="flex justify-end">
         <Button
           type="button"
           size="sm"
-          shape="square"
           color="primary"
+          startIcon={<FiPlus size={20} />}
           onClick={addNewItem}>
-          <FiPlus size={20} />
+          Add Item
         </Button>
       </div>
       {fields.map((field, index) => {

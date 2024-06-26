@@ -12,6 +12,7 @@ import { Button, Card } from 'react-daisyui';
 
 import { useModal } from '@/hooks/useModal';
 import MenuModal from './MenuModal/MenuModal';
+import MenuCategories from './MenuCategories/MenuCategories';
 
 const MenuBuilder = () => {
   const setMenuAtom = useSetAtom(menuAtom);
@@ -44,7 +45,7 @@ const MenuBuilder = () => {
 
   return (
     <>
-      <Card className="border border-base-200 border-opacity-20 bg-base-100 shadow-lg w-[560px]">
+      <Card className="border border-base-200 border-opacity-20 bg-base-100 shadow-lg w-[600px]">
         <Card.Body>
           <h2 className="card-title">Create Menu</h2>
           <p className="mb-4">Fill the form to create your personal menu.</p>
@@ -54,7 +55,7 @@ const MenuBuilder = () => {
               onSubmit={handleSubmit(onFormSubmit)}>
               <div className="flex flex-col gap-8 w-full">
                 <MenuHeader />
-                <MenuItems control={control} arrayName="products" />
+                <MenuCategories control={control} />
                 <div className="card-actions justify-end">
                   <Button type="button" color="neutral" onClick={onFormReset}>
                     Reset
