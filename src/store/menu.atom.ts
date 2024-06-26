@@ -7,7 +7,7 @@ export const menuAtom = atom<MenuFormInputs>({
   categories: [
     {
       name: '',
-      products: [
+      items: [
         {
           name: '',
           description: '',

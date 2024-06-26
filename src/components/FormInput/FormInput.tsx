@@ -18,8 +18,8 @@ const FormInput = ({
   required = false,
   size = 'md',
 }: FormInputProps) => {
-  const { register, getFieldState } = useFormContext();
-  const { error } = getFieldState(name);
+  const { register, getFieldState, formState } = useFormContext();
+  const { error } = getFieldState(name, formState);
 
   return (
     <label htmlFor={name} className="form-control w-full">

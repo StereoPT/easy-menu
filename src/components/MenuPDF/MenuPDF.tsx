@@ -24,16 +24,16 @@ const MenuPDF = () => {
           <Text style={styles.subtitle}>{menu.subtitle}</Text>
         </View>
         <View style={styles.products}>
-          {menu.categories[0].products.map((product, index) => {
+          {menu.categories[0].items.map((item, index) => {
             return (
-              <View key={`${product.name}_${index}`} style={styles.itemWrapper}>
+              <View key={`${item.name}_${index}`} style={styles.itemWrapper}>
                 <View style={styles.itemWrapper2}>
-                  <Text style={styles.productName}>{product.name}</Text>
+                  <Text style={styles.productName}>{item.name}</Text>
                   <Text style={styles.productDescription}>
-                    {product.description}
+                    {item.description}
                   </Text>
                 </View>
-                <Text style={styles.productPrice}>{product.price} €</Text>
+                <Text style={styles.productPrice}>{item.price} €</Text>
               </View>
             );
           })}

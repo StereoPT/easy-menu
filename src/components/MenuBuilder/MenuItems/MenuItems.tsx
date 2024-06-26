@@ -13,7 +13,7 @@ const MenuItems = ({ category }: MenuItemsProps) => {
   const { control } = useFormContext();
   const { fields, append, move, remove } = useFieldArray({
     control,
-    name: `${category}.products`,
+    name: `${category}.items`,
   });
 
   const addNewItem = () => {

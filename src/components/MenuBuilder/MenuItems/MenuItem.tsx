@@ -43,14 +43,14 @@ const MenuItem = ({
       <div className="flex flex-col gap-2 basis-2/3">
         <div className="w-full">
           <FormInput
-            name={`${category}.products.${itemIndex}.name`}
+            name={`${category}.items.${itemIndex}.name`}
             placeholder="Product Name"
             size="sm"
           />
         </div>
         <div className="w-full">
           <FormInput
-            name={`${category}.products.${itemIndex}.description`}
+            name={`${category}.items.${itemIndex}.description`}
             placeholder="Product Description"
             size="sm"
           />
@@ -58,7 +58,7 @@ const MenuItem = ({
       </div>
       <div className="basis-1/3">
         <FormInput
-          name={`${category}.products.${itemIndex}.price`}
+          name={`${category}.items.${itemIndex}.price`}
           placeholder="Price"
           size="sm"
         />
