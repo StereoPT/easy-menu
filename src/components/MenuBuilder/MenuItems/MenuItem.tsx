@@ -4,6 +4,7 @@ import { UseFieldArrayMove, UseFieldArrayRemove } from 'react-hook-form';
 import { FiArrowDown, FiArrowUp, FiTrash2 } from 'react-icons/fi';
 
 type MenuItemProps = {
+  category: string;
   itemIndex: number;
   itemAmount: number;
   removeItem: UseFieldArrayRemove;
@@ -11,6 +12,7 @@ type MenuItemProps = {
 };
 
 const MenuItem = ({
+  category,
   itemIndex,
   itemAmount,
   removeItem,
@@ -41,22 +43,22 @@ const MenuItem = ({
       <div className="flex flex-col gap-2 basis-2/3">
         <div className="w-full">
           <FormInput
-            name={`products.${itemIndex}.name`}
-            placeholder="Product Name"
+            name={`${category}.items.${itemIndex}.name`}
+            placeholder="Item Name"
             size="sm"
           />
         </div>
         <div className="w-full">
           <FormInput
-            name={`products.${itemIndex}.description`}
-            placeholder="Product Description"
+            name={`${category}.items.${itemIndex}.description`}
+            placeholder="Item Description"
             size="sm"
           />
         </div>
       </div>
       <div className="basis-1/3">
         <FormInput
-          name={`products.${itemIndex}.price`}
+          name={`${category}.items.${itemIndex}.price`}
           placeholder="Price"
           size="sm"
         />
