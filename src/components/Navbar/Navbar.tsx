@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import {
   Badge,
   Button,
@@ -21,9 +22,11 @@ const Navbar = () => {
         </Dropdown>
       </DaisyNavbar.Start>
       <DaisyNavbar.Center>
-        <Button tag="a" color="ghost" className="normal-case text-xl" href="#">
-          Easy-Menu
-        </Button>
+        <Link href="/">
+          <Button color="ghost" className="normal-case text-xl">
+            Easy-Menu
+          </Button>
+        </Link>
       </DaisyNavbar.Center>
       <DaisyNavbar.End>
         <Button color="ghost" shape="circle">

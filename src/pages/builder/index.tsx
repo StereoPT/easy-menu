@@ -1,14 +1,15 @@
 import Navbar from '@/components/Navbar/Navbar';
+import MenuBuilder from '@/components/MenuBuilder/MenuBuilder';
 
-const Home = () => {
+const Builder = () => {
   return (
     <>
       <Navbar />
       <main className="flex flex-col items-center gap-16 p-4 mt-8">
-        Landing Page
+        <MenuBuilder />
       </main>
     </>
   );
 };
 
-export default Home;
+export default Builder;
