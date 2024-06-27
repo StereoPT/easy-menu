@@ -5,7 +5,7 @@ const Builder = () => {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col items-center gap-16 p-4 mt-8">
+      <main className="flex flex-col items-center gap-16 p-4 my-8">
         <MenuBuilder />
       </main>
     </>
