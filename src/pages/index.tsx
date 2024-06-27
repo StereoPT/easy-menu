@@ -50,7 +50,7 @@ const Home = () => {
             <div className="grid w-[820px] h-[500px] rounded shadow-md bg-base-200 text-secondary-content place-content-center" />
           </Stack>
         </div>
-        <div className="grid grid-cols-3 grid-rows-2 content-center gap-y-12 gap-x-4">
+        <div className="grid grid-cols-3 grid-rows-2 content-center gap-y-12 gap-x-4 mt-12">
           <Feature title="Easy to Use">
             <p>Intuitive interface for </p>
             <p>quick and easy list creation.</p>
