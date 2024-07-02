@@ -43,3 +43,5 @@ export const menuFormSchema = yup
   .required();
 
 export type MenuFormInputs = yup.InferType<typeof menuFormSchema>;
+export type MenuFormCategory = yup.InferType<typeof menuCategorySchema>;
+export type MenuFormItem = yup.InferType<typeof menuItemSchema>;
