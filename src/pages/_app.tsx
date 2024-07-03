@@ -6,6 +6,7 @@ import { Theme } from 'react-daisyui';
 import '@/styles/globals.css';
 
 import type { AppProps } from 'next/app';
+import { Analytics } from '@vercel/analytics/react';
 
 type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode;
@@ -85,6 +86,7 @@ Menu design software"
       </Head>
       <Theme dataTheme="emerald">
         {getLayout(<Component {...pageProps} />)}
+        <Analytics />
       </Theme>
     </>
   );
