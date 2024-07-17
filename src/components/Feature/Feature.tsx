@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { Badge } from 'react-daisyui';
 
 type FeatureProps = {
   title: string;
@@ -8,11 +7,9 @@ type FeatureProps = {
 
 const Feature = ({ title, children }: FeatureProps) => {
   return (
-    <div className="text-center">
-      <Badge className="font-bold text-sm" color="primary" size="lg">
-        {title}
-      </Badge>
-      <div className="mt-2 text-sm">{children}</div>
+    <div className="cursor-pointer py-5 px-4 rounded border border-transparent bg-zinc-100 transition-all hover:bg-white hover:border-zinc-200 hover:shadow hover:rotate-1">
+      <div className="font-semibold">{title}</div>
+      <div className="text-gray-500 text-sm font-light">{children}</div>
     </div>
   );
 };
