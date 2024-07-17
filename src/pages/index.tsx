@@ -6,9 +6,9 @@ import { Badge, Button, Hero, Stack } from 'react-daisyui';
 
 const Home = () => {
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Navbar />
-      <main className="flex flex-col items-center gap-8 my-8">
+      <main className="flex flex-col items-center overflow-y-auto gap-8 py-8">
         <Hero>
           <Hero.Content className="text-center">
             <div className="flex flex-col items-center gap-6 max-w-xl">
@@ -75,7 +75,7 @@ const Home = () => {
           </Feature>
         </div>
       </main>
-    </>
+    </div>
   );
 };
 
