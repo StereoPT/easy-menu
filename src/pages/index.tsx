@@ -1,54 +1,53 @@
-import Feature from '@/components/Feature/Feature';
-import Navbar from '@/components/Navbar/Navbar';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Badge, Button, Hero, Stack } from 'react-daisyui';
+
+import { Badge, Button, Hero } from 'react-daisyui';
+
+import Feature from '@/components/Feature/Feature';
+import Navbar from '@/components/Navbar/Navbar';
 
 const Home = () => {
   return (
     <div className="flex flex-col h-screen">
       <Navbar />
-      <main className="flex flex-col items-center overflow-y-auto gap-8 py-8">
+      <main className="flex flex-col items-center overflow-y-auto overflow-x-hidden gap-8 py-8">
         <Hero>
           <Hero.Content className="text-center">
-            <div className="flex flex-col items-center gap-6 max-w-xl">
+            <div className="flex flex-col items-center gap-12 max-w-lg lg:max-w-2xl">
               <Badge
                 className="font-bold text-sm text-white"
                 size="lg"
                 color="primary">
-                Alpha is now Available
+                Alpha now Available!
               </Badge>
               <div className="flex flex-col items-center gap-4">
-                <h1 className="text-5xl font-bold">
+                <h1 className="text-4xl sm:text-5xl font-bold">
                   Pricing Lists made{' '}
                   <span className="text-primary">simple.</span>
                 </h1>
-                <p className="max-w-md">
+                <p className="text-sm sm:text-base max-w-sm lg:max-w-lg text-gray-400 font-light">
                   Effortlessly create simple, customizable PDF pricing lists for
                   your business. Perfect for restaurants, cafes, and more!
                 </p>
               </div>
               <Link href="/builder">
-                <Button color="primary">Create Now</Button>
+                <Button className="text-white" color="primary">
+                  Create Now
+                </Button>
               </Link>
             </div>
           </Hero.Content>
         </Hero>
-        <div className="flex flex-col items-center justify-center rounded-2xl bg-neutral-300 shadow-md w-[880px] h-[560px]">
-          <Stack>
-            <div className="grid w-[818px] h-[498px] rounded shadow-md bg-base-200 text-primary-content place-content-center">
-              <Image
-                className="rounded"
-                src="/images/Easy-Menu_Alpha.jpeg"
-                alt="Application"
-                quality={100}
-                priority
-                fill
-              />
-            </div>
-            <div className="grid w-[820px] h-[500px] rounded shadow-md bg-base-200 text-accent-content place-content-center" />
-            <div className="grid w-[820px] h-[500px] rounded shadow-md bg-base-200 text-secondary-content place-content-center" />
-          </Stack>
+        <div className="relative flex justify-center mx-auto px-4 max-w-[72rem] before:content-[''] before:opacity-20 before:blur-3xl before:bg-zinc-900 before:z-1 before:absolute before:w-96 before:h-96 before:-top-12 before:rounded-full">
+          <Image
+            className="shadow-xl rounded-lg z-10"
+            src="/images/Easy-Menu_Alpha.jpeg"
+            alt="Application"
+            quality={100}
+            priority
+            width={1104}
+            height={620}
+          />
         </div>
         <div className="grid grid-cols-3 grid-rows-2 content-center gap-y-12 gap-x-4 mt-12">
           <Feature title="Easy to Use">

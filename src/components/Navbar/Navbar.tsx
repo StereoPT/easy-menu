@@ -10,7 +10,7 @@ import { FiBell, FiMenu } from 'react-icons/fi';
 
 const Navbar = () => {
   return (
-    <DaisyNavbar className="bg-neutral text-neutral-content">
+    <DaisyNavbar className="bg-neutral text-neutral-content shadow-lg">
       <DaisyNavbar.Start>
         <Dropdown>
           <Button tag="label" color="ghost" shape="circle" tabIndex={0}>
