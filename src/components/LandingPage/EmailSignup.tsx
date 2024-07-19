@@ -1,15 +1,19 @@
-import { MailListInputs, mailListSchema } from '@/schemas/mailList';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Button, Input } from 'react-daisyui';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+
+import { MailListInputs, mailListSchema } from '@/schemas/mailList';
+
+import useAddMailList from '@/hooks/useAddMailList';
 
 const EmailSignup = () => {
+  const { addEmailToList } = useAddMailList();
   const { register, handleSubmit, reset } = useForm<MailListInputs>({
     resolver: yupResolver(mailListSchema),
   });
 
   const onFormSubmit: SubmitHandler<MailListInputs> = ({ email }) => {
-    alert(email);
+    addEmailToList(email);
     reset();
   };
 
