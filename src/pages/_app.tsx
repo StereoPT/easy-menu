@@ -2,8 +2,10 @@ import { ReactElement, ReactNode } from 'react';
 import { NextPage } from 'next';
 import Head from 'next/head';
 import { Theme } from 'react-daisyui';
+import { ToastContainer } from 'react-toastify';
 
 import '@/styles/globals.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
@@ -86,6 +88,7 @@ Menu design software"
       </Head>
       <Theme dataTheme="emerald">
         {getLayout(<Component {...pageProps} />)}
+        <ToastContainer />
         <Analytics />
       </Theme>
     </>
