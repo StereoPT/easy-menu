@@ -1,4 +1,5 @@
 import { postRequest } from '@/utils/axios';
+import { toast } from 'react-toastify';
 
 const useAddMailList = () => {
   const addEmailToList = async (email: string) => {
@@ -7,9 +8,13 @@ const useAddMailList = () => {
         email,
       });
 
-      alert('Nice Job Dood!');
+      toast.success('Successfully Subscribed!', {
+        position: 'top-right',
+      });
     } catch (error) {
-      alert('Something went Wrong Dood!');
+      toast.error('Something went Wrong!', {
+        position: 'top-right',
+      });
     }
   };
 

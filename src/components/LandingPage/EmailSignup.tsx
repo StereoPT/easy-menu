@@ -38,7 +38,9 @@ const EmailSignup = () => {
               className="w-80"
               placeholder="Your Email Address"
             />
-            <Button color="primary">Subscribe</Button>
+            <Button className="text-white" color="primary">
+              Subscribe
+            </Button>
           </form>
         </div>
       </div>
