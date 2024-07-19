@@ -11,7 +11,13 @@ export default async function handler(
   res: NextApiResponse<ResponseData>,
 ) {
   try {
-    await addToMailList('teste@teste.com');
+    const { email } = req.body;
+
+    if (!email) {
+      throw new Error('Missing Email');
+    }
+
+    await addToMailList(email);
     res.status(200).json({ message: 'Thanks for Joining my Mail List!' });
   } catch (error) {
     console.error(error);
