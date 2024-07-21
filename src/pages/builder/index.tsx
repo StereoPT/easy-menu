@@ -1,5 +1,5 @@
-import Navbar from '@/components/Navbar/Navbar';
 import MenuBuilder from '@/components/MenuBuilder/MenuBuilder';
+import Navbar from '@/components/MenuBuilder/Navbar/Navbar';
 
 const Builder = () => {
   return (

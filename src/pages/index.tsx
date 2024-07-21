@@ -1,9 +1,8 @@
-import Navbar from '@/components/Navbar/Navbar';
-
+import Navbar from '@/components/LandingPage/Navbar';
 import Hero from '@/components/LandingPage/Hero';
 import FeatureList from '@/components/LandingPage/FeatureList';
 import EmailSignup from '@/components/LandingPage/EmailSignup';
-import Footer from '@/components/Footer/Footer';
+import Footer from '@/components/LandingPage/Footer';
 
 const Home = () => {
   return (
