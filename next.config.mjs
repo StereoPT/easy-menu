@@ -5,6 +5,7 @@ const nextConfig = {
     esmExternals: 'loose',
     serverComponentsExternalPackages: ['@react-pdf/renderer'],
   },
+  swcMinify: false,
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     return config;
