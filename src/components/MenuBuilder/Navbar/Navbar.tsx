@@ -10,10 +10,10 @@ const Navbar = () => {
         </Button>
       </Link>
       <div className="flex items-center gap-2">
-        <Button color="ghost" size="sm">
+        <Button type="button" color="ghost" size="sm">
           Preview
         </Button>
-        <Button className="text-white" color="primary" size="sm">
+        <Button className="text-white" type="submit" color="primary" size="sm">
           Create
         </Button>
       </div>

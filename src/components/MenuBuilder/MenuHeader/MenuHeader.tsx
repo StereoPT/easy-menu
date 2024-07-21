@@ -1,5 +1,4 @@
 import FormInput from '@/components/FormInput/FormInput';
-import { Input } from 'react-daisyui';
 
 const MenuHeader = () => {
   return (
