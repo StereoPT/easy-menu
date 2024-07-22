@@ -1,33 +1,47 @@
-import { useState } from 'react';
-
 import { pdfjs, Document, Page } from 'react-pdf';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 
-import type { PDFDocumentProxy } from 'pdfjs-dist';
+import { Button } from 'react-daisyui';
+import { useSetAtom } from 'jotai';
+import { previewAtom } from '@/store/menu.atom';
+import { FiChevronLeft } from 'react-icons/fi';
+
+import { usePDF } from '@react-pdf/renderer';
+import MenuPDF from '@/components/MenuPDF/MenuPDF';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
   import.meta.url,
 ).toString();
 
-type PDFFile = string | File | null;
-
 const MenuPreview = () => {
-  const [file, setFile] = useState<PDFFile>('./easy-menu.pdf');
-  const [nrPages, setNrPages] = useState<number>();
+  const setShowPreview = useSetAtom(previewAtom);
+  const [instance] = usePDF({ document: MenuPDF() });
 
-  function onDocumentLoadSuccess({ numPages }: PDFDocumentProxy): void {
-    setNrPages(numPages);
-  }
+  const handleBack = () => {
+    setShowPreview(false);
+  };
 
   return (
-    <div>
-      <Document file={file} onLoadSuccess={onDocumentLoadSuccess}>
-        {Array.from(new Array(nrPages), (el, index) => (
-          <Page key={`page_${index + 1}`} pageNumber={index + 1} width={420} />
-        ))}
-      </Document>
+    <div className="absolute top-0 left-0 z-[100] bg-white w-screen h-screen overflow-hidden">
+      <nav className="fixed top-0 right-0 left-0 flex items-center justify-end  px-3 py-2 z-50">
+        <Button
+          type="button"
+          color="ghost"
+          size="sm"
+          startIcon={<FiChevronLeft size={20} />}
+          onClick={handleBack}>
+          Back to editor
+        </Button>
+      </nav>
+      <div className="flex justify-center items-center h-full">
+        <div className="rounded-lg shadow-lg overflow-hidden">
+          <Document file={instance.blob}>
+            <Page pageNumber={1} height={720} />
+          </Document>
+        </div>
+      </div>
     </div>
   );
 };

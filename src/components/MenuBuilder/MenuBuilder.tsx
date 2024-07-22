@@ -1,9 +1,11 @@
+import dynamic from 'next/dynamic';
+
 import { FormProvider, useForm, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { MenuFormInputs, menuFormSchema } from '@/schemas/menuForm';
 
-import { useSetAtom } from 'jotai';
-import { menuAtom } from '@/store/menu.atom';
+import { useAtomValue, useSetAtom } from 'jotai';
+import { menuAtom, previewAtom } from '@/store/menu.atom';
 
 import Navbar from '@/components/MenuBuilder/Navbar/Navbar';
 import MenuHeader from './MenuHeader/MenuHeader';
@@ -14,7 +16,15 @@ import { useModal } from '@/hooks/useModal';
 import MenuModal from './MenuModal/MenuModal';
 import MenuCategories from './MenuCategories/MenuCategories';
 
+const MenuPreview = dynamic(
+  () => import('@/components/MenuBuilder/MenuPreview/MenuPreview'),
+  {
+    ssr: false,
+  },
+);
+
 const MenuBuilder = () => {
+  const showPreview = useAtomValue(previewAtom);
   const setMenuAtom = useSetAtom(menuAtom);
 
   const methods = useForm<MenuFormInputs>({
@@ -75,6 +85,7 @@ const MenuBuilder = () => {
         </form>
       </FormProvider>
       {menuModal}
+      {showPreview && <MenuPreview />}
     </>
   );
 };
