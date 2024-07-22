@@ -2,7 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
+    esmExternals: 'loose',
     serverComponentsExternalPackages: ['@react-pdf/renderer'],
+  },
+  swcMinify: false,
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    return config;
   },
 };
 

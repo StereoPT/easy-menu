@@ -17,3 +17,5 @@ export const menuAtom = atom<MenuFormInputs>({
     },
   ],
 });
+
+export const previewAtom = atom<boolean>(false);
