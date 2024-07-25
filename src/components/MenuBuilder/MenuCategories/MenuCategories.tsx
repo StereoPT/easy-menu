@@ -31,18 +31,16 @@ const MenuCategories = () => {
           Add Category
         </Button>
       </div>
-      <Join className="w-full" vertical={true}>
-        {fields.map((field, index) => {
-          return (
-            <MenuCategory
-              key={field.id}
-              categoryIndex={index}
-              categoryAmount={fields.length}
-              removeCategory={remove}
-            />
-          );
-        })}
-      </Join>
+      {fields.map((field, index) => {
+        return (
+          <MenuCategory
+            key={field.id}
+            categoryIndex={index}
+            categoryAmount={fields.length}
+            removeCategory={remove}
+          />
+        );
+      })}
     </div>
   );
 };

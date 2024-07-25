@@ -20,15 +20,12 @@ const MenuCategory = ({
   const categoryName = useWatch({ name: `categories.${categoryIndex}.name` });
 
   return (
-    <Accordion
-      className="border border-base-500 join-item"
-      icon="arrow"
-      defaultChecked>
-      <Accordion.Title className="text-lg font-medium">
+    <Accordion icon="arrow" defaultChecked>
+      <Accordion.Title className="border border-base-500 rounded-2xl text-lg font-medium">
         {categoryName || 'Category Name'}
       </Accordion.Title>
       <Accordion.Content className="flex flex-col gap-8">
-        <div className="flex justify-between gap-2">
+        <div className="flex justify-between gap-2 pt-4">
           <FormInput
             name={`categories.${categoryIndex}.name`}
             placeholder="Category Name"
