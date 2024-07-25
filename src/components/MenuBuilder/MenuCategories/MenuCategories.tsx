@@ -4,7 +4,7 @@ import MenuCategory from './MenyCategory/MenuCategory';
 
 const MenuCategories = () => {
   const { control } = useFormContext();
-  const { fields, insert, remove } = useFieldArray({
+  const { fields, move, insert, remove } = useFieldArray({
     control,
     name: 'categories',
   });
@@ -26,6 +26,7 @@ const MenuCategories = () => {
             categoryAmount={fields.length}
             addCategory={add}
             removeCategory={remove}
+            moveCategory={move}
           />
         );
       })}

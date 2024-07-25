@@ -1,10 +1,13 @@
-import { UseFieldArrayRemove, useWatch } from 'react-hook-form';
-import { Accordion, Button } from 'react-daisyui';
+import {
+  UseFieldArrayMove,
+  UseFieldArrayRemove,
+  useWatch,
+} from 'react-hook-form';
+import { Accordion } from 'react-daisyui';
 
 import MenuItems from '../../MenuItems/MenuItems';
 import FormInput from '@/components/FormInput/FormInput';
 
-import { FiTrash2 } from 'react-icons/fi';
 import useMenuItemOptions from '@/hooks/useMenuItemOptions';
 import MenuCategoryOptions from './MenuCategoryOptions';
 
@@ -13,6 +16,7 @@ type MenuCategoryProps = {
   categoryAmount: number;
   addCategory: (after: number) => void;
   removeCategory: UseFieldArrayRemove;
+  moveCategory: UseFieldArrayMove;
 };
 
 const MenuCategory = ({
@@ -20,6 +24,7 @@ const MenuCategory = ({
   categoryAmount,
   addCategory,
   removeCategory,
+  moveCategory,
 }: MenuCategoryProps) => {
   const categoryName = useWatch({ name: `categories.${categoryIndex}.name` });
 
@@ -35,6 +40,16 @@ const MenuCategory = ({
 
   const handleAddCategory = (after: number) => {
     addCategory(after);
+    setIsOpen(false);
+  };
+
+  const handleRemoveCategory = (category: number) => {
+    removeCategory(category);
+    setIsOpen(false);
+  };
+
+  const handleMoveCategory = (from: number, to: number) => {
+    moveCategory(from, to);
     setIsOpen(false);
   };
 
@@ -55,15 +70,6 @@ const MenuCategory = ({
               placeholder="Category Name"
               size="sm"
             />
-            <Button
-              type="button"
-              size="sm"
-              shape="square"
-              color="error"
-              disabled={categoryAmount <= 1}
-              onClick={() => removeCategory(categoryIndex)}>
-              <FiTrash2 size={20} />
-            </Button>
           </div>
           <MenuItems category={`categories.${categoryIndex}`} />
         </Accordion.Content>
@@ -78,6 +84,8 @@ const MenuCategory = ({
             categoryAmount={categoryAmount}
             categoryIndex={categoryIndex}
             addCategory={handleAddCategory}
+            removeCategory={handleRemoveCategory}
+            moveCategory={handleMoveCategory}
           />
         </div>
       )}
