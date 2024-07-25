@@ -1,16 +1,9 @@
-import FormInput from '@/components/FormInput/FormInput';
 import { UseFieldArrayMove, UseFieldArrayRemove } from 'react-hook-form';
-import {
-  safePolygon,
-  useFloating,
-  useFocus,
-  useHover,
-  useInteractions,
-  offset,
-  useTransitionStyles,
-} from '@floating-ui/react';
-import { useState } from 'react';
+
+import FormInput from '@/components/FormInput/FormInput';
 import MenuItemOptions from './MenuItemOptions';
+
+import useMenuItemOptions from '@/hooks/useMenuItemOptions';
 
 type MenuItemProps = {
   category: string;
@@ -27,27 +20,25 @@ const MenuItem = ({
   removeItem,
   moveItem,
 }: MenuItemProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const {
+    refs,
+    floatingStyles,
+    getReferenceProps,
+    getFloatingProps,
+    isMounted,
+    styles,
+    setIsOpen,
+  } = useMenuItemOptions();
 
-  const { refs, context, floatingStyles } = useFloating({
-    placement: 'left',
-    strategy: 'fixed',
-    open: isOpen,
-    onOpenChange: setIsOpen,
-    middleware: [offset(4)],
-  });
+  const handleRemoveItem = (item: number) => {
+    removeItem(item);
+    setIsOpen(false);
+  };
 
-  const hover = useHover(context, {
-    handleClose: safePolygon(),
-  });
-  const focus = useFocus(context);
-
-  const { getReferenceProps, getFloatingProps } = useInteractions([
-    hover,
-    focus,
-  ]);
-
-  const { isMounted, styles } = useTransitionStyles(context);
+  const handleMoveItem = (from: number, to: number) => {
+    moveItem(from, to);
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -86,14 +77,8 @@ const MenuItem = ({
             transitionStyles={styles}
             itemAmount={itemAmount}
             itemIndex={itemIndex}
-            removeItem={(item) => {
-              removeItem(item);
-              setIsOpen(false);
-            }}
-            moveItem={(from, to) => {
-              moveItem(from, to);
-              setIsOpen(false);
-            }}
+            removeItem={handleRemoveItem}
+            moveItem={handleMoveItem}
           />
         </div>
       )}
