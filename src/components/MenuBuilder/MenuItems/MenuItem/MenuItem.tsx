@@ -7,6 +7,7 @@ import {
   useHover,
   useInteractions,
   offset,
+  useTransitionStyles,
 } from '@floating-ui/react';
 import { useState } from 'react';
 import MenuItemOptions from './MenuItemOptions';
@@ -46,6 +47,8 @@ const MenuItem = ({
     focus,
   ]);
 
+  const { isMounted, styles } = useTransitionStyles(context);
+
   return (
     <>
       <div
@@ -72,22 +75,25 @@ const MenuItem = ({
           />
         </div>
       </div>
-      {isOpen && (
-        <MenuItemOptions
-          setFloating={refs.setFloating}
-          floatingStyles={floatingStyles}
-          getFloatingProps={getFloatingProps}
-          itemAmount={itemAmount}
-          itemIndex={itemIndex}
-          removeItem={(item) => {
-            removeItem(item);
-            setIsOpen(false);
-          }}
-          moveItem={(from, to) => {
-            moveItem(from, to);
-            setIsOpen(false);
-          }}
-        />
+      {isMounted && (
+        <div
+          ref={refs.setFloating}
+          style={floatingStyles}
+          {...getFloatingProps()}>
+          <MenuItemOptions
+            transitionStyles={styles}
+            itemAmount={itemAmount}
+            itemIndex={itemIndex}
+            removeItem={(item) => {
+              removeItem(item);
+              setIsOpen(false);
+            }}
+            moveItem={(from, to) => {
+              moveItem(from, to);
+              setIsOpen(false);
+            }}
+          />
+        </div>
       )}
     </>
   );

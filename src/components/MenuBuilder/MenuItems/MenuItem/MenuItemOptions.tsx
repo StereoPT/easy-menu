@@ -1,13 +1,9 @@
-import { CSSProperties, HTMLProps } from 'react';
+import { CSSProperties } from 'react';
 import { Button } from 'react-daisyui';
 import { FiArrowDown, FiArrowUp, FiTrash2 } from 'react-icons/fi';
 
 type MenuItemOptionProps = {
-  setFloating: (node: HTMLElement | null) => void;
-  floatingStyles: CSSProperties;
-  getFloatingProps: (
-    userProps?: HTMLProps<HTMLElement>,
-  ) => Record<string, unknown>;
+  transitionStyles: CSSProperties;
   itemAmount: number;
   itemIndex: number;
   removeItem: (item: number) => void;
@@ -15,9 +11,7 @@ type MenuItemOptionProps = {
 };
 
 const MenuItemOptions = ({
-  setFloating,
-  floatingStyles,
-  getFloatingProps,
+  transitionStyles,
   itemAmount,
   itemIndex,
   removeItem,
@@ -26,9 +20,7 @@ const MenuItemOptions = ({
   return (
     <div
       className="p-2 flex flex-row gap-2 rounded"
-      ref={setFloating}
-      style={floatingStyles}
-      {...getFloatingProps()}>
+      style={{ ...transitionStyles }}>
       <Button
         type="button"
         size="xs"
