@@ -1,6 +1,3 @@
-import { Button } from 'react-daisyui';
-import { FiPlus } from 'react-icons/fi';
-
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import MenuItem from './MenuItem/MenuItem';
