@@ -3,7 +3,7 @@ import { FiPlus } from 'react-icons/fi';
 
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
-import MenuItem from './MenuItem';
+import MenuItem from './MenuItem/MenuItem';
 
 type MenuItemsProps = {
   category: string;
