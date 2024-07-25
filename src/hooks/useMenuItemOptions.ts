@@ -13,7 +13,7 @@ const useMenuItemOptions = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, context, floatingStyles } = useFloating({
-    placement: 'left',
+    placement: 'left-start',
     strategy: 'fixed',
     open: isOpen,
     onOpenChange: setIsOpen,

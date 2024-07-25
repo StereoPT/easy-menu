@@ -9,6 +9,7 @@ type MenuItemProps = {
   category: string;
   itemIndex: number;
   itemAmount: number;
+  addItem: (after: number) => void;
   removeItem: UseFieldArrayRemove;
   moveItem: UseFieldArrayMove;
 };
@@ -17,6 +18,7 @@ const MenuItem = ({
   category,
   itemIndex,
   itemAmount,
+  addItem,
   removeItem,
   moveItem,
 }: MenuItemProps) => {
@@ -29,6 +31,11 @@ const MenuItem = ({
     styles,
     setIsOpen,
   } = useMenuItemOptions();
+
+  const handleAddItem = (after: number) => {
+    addItem(after);
+    setIsOpen(false);
+  };
 
   const handleRemoveItem = (item: number) => {
     removeItem(item);
@@ -77,6 +84,7 @@ const MenuItem = ({
             transitionStyles={styles}
             itemAmount={itemAmount}
             itemIndex={itemIndex}
+            addItem={handleAddItem}
             removeItem={handleRemoveItem}
             moveItem={handleMoveItem}
           />

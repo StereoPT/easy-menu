@@ -1,11 +1,18 @@
 import { CSSProperties } from 'react';
-import { Button } from 'react-daisyui';
-import { FiArrowDown, FiArrowUp, FiTrash2 } from 'react-icons/fi';
+import { Button, Dropdown } from 'react-daisyui';
+import {
+  FiArrowDown,
+  FiArrowUp,
+  FiMoreVertical,
+  FiPlus,
+  FiTrash2,
+} from 'react-icons/fi';
 
 type MenuItemOptionProps = {
   transitionStyles: CSSProperties;
   itemAmount: number;
   itemIndex: number;
+  addItem: (after: number) => void;
   removeItem: (item: number) => void;
   moveItem: (from: number, to: number) => void;
 };
@@ -14,6 +21,7 @@ const MenuItemOptions = ({
   transitionStyles,
   itemAmount,
   itemIndex,
+  addItem,
   removeItem,
   moveItem,
 }: MenuItemOptionProps) => {
@@ -21,6 +29,21 @@ const MenuItemOptions = ({
     <div
       className="p-2 flex flex-row gap-2 rounded"
       style={{ ...transitionStyles }}>
+      <Button
+        type="button"
+        size="xs"
+        shape="square"
+        color="ghost"
+        onClick={() => addItem(itemIndex + 1)}>
+        <FiPlus size={16} />
+      </Button>
+
+      <Dropdown>Dropdown</Dropdown>
+      {/* <Button type="button" size="xs" shape="square" color="ghost">
+        <FiMoreVertical size={16} />
+      </Button> */}
+
+      {/* Older Things from this point on! */}
       <Button
         type="button"
         size="xs"

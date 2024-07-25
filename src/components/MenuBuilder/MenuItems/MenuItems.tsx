@@ -11,13 +11,13 @@ type MenuItemsProps = {
 
 const MenuItems = ({ category }: MenuItemsProps) => {
   const { control } = useFormContext();
-  const { fields, append, move, remove } = useFieldArray({
+  const { fields, move, remove, insert } = useFieldArray({
     control,
     name: `${category}.items`,
   });
 
-  const addNewItem = () => {
-    append({
+  const add = (after: number) => {
+    insert(after, {
       name: '',
       description: '',
       price: 0,
@@ -26,16 +26,6 @@ const MenuItems = ({ category }: MenuItemsProps) => {
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex justify-end">
-        <Button
-          type="button"
-          size="sm"
-          color="primary"
-          startIcon={<FiPlus size={20} />}
-          onClick={addNewItem}>
-          Add Item
-        </Button>
-      </div>
       {fields.map((field, index) => {
         return (
           <MenuItem
@@ -43,6 +33,7 @@ const MenuItems = ({ category }: MenuItemsProps) => {
             category={category}
             itemIndex={index}
             itemAmount={fields.length}
+            addItem={add}
             removeItem={remove}
             moveItem={move}
           />
