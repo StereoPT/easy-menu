@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   useFloating,
-  offset,
   useHover,
   useFocus,
   safePolygon,
@@ -17,7 +16,6 @@ const useMenuItemOptions = () => {
     strategy: 'fixed',
     open: isOpen,
     onOpenChange: setIsOpen,
-    middleware: [offset(4)],
   });
 
   const hover = useHover(context, {
