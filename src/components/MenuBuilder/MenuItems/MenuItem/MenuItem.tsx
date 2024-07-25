@@ -52,28 +52,30 @@ const MenuItem = ({
   return (
     <>
       <div
-        className="flex justify-between gap-2 w-full p-2 bg-neutral-200 rounded-xl"
+        className="flex flex-col gap-2 w-full p-3 bg-neutral-100 rounded-xl"
         ref={refs.setReference}
         {...getReferenceProps()}>
-        <div className="flex flex-col gap-2 basis-2/3">
-          <FormInput
-            name={`${category}.items.${itemIndex}.name`}
-            placeholder="Item Name"
-            size="sm"
-          />
-          <FormInput
-            name={`${category}.items.${itemIndex}.description`}
-            placeholder="Item Description"
-            size="sm"
-          />
+        <div className="flex justify-between gap-2">
+          <div className="flex flex-col gap-2 basis-2/3">
+            <FormInput
+              name={`${category}.items.${itemIndex}.name`}
+              placeholder="Item Name"
+              size="sm"
+            />
+          </div>
+          <div className="basis-1/3">
+            <FormInput
+              name={`${category}.items.${itemIndex}.price`}
+              placeholder="Price"
+              size="sm"
+            />
+          </div>
         </div>
-        <div className="basis-1/3">
-          <FormInput
-            name={`${category}.items.${itemIndex}.price`}
-            placeholder="Price"
-            size="sm"
-          />
-        </div>
+        <FormInput
+          name={`${category}.items.${itemIndex}.description`}
+          placeholder="Item Description"
+          size="sm"
+        />
       </div>
       {isMounted && (
         <div
