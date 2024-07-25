@@ -32,7 +32,7 @@ const Hero = () => {
       </div>
       <div className="relative flex justify-center mx-auto px-4 max-w-[72rem] before:content-[''] before:opacity-20 before:blur-3xl before:bg-zinc-900 before:z-1 before:absolute before:w-96 before:h-96 before:-top-12 before:rounded-full">
         <Image
-          className="shadow-xl rounded-lg z-10"
+          className="shadow-xl border border-neutral-200 rounded-lg z-10"
           src="/images/Easy-Menu_Alpha.jpeg"
           alt="Application"
           quality={100}
