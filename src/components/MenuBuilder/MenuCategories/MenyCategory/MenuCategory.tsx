@@ -8,7 +8,7 @@ import { Accordion } from 'react-daisyui';
 import MenuItems from '../../MenuItems/MenuItems';
 import FormInput from '@/components/FormInput/FormInput';
 
-import useMenuItemOptions from '@/hooks/useMenuItemOptions';
+import useFloatingOptions from '@/hooks/useFloatingOptions';
 import MenuCategoryOptions from './MenuCategoryOptions';
 
 type MenuCategoryProps = {
@@ -36,7 +36,7 @@ const MenuCategory = ({
     isMounted,
     styles,
     setIsOpen,
-  } = useMenuItemOptions();
+  } = useFloatingOptions();
 
   const handleAddCategory = (after: number) => {
     addCategory(after);
@@ -76,6 +76,7 @@ const MenuCategory = ({
       </Accordion>
       {isMounted && (
         <div
+          className="z-50"
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}>

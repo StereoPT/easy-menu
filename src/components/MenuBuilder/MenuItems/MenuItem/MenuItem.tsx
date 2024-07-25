@@ -3,7 +3,7 @@ import { UseFieldArrayMove, UseFieldArrayRemove } from 'react-hook-form';
 import FormInput from '@/components/FormInput/FormInput';
 import MenuItemOptions from './MenuItemOptions';
 
-import useMenuItemOptions from '@/hooks/useMenuItemOptions';
+import useFloatingOptions from '@/hooks/useFloatingOptions';
 
 type MenuItemProps = {
   category: string;
@@ -30,7 +30,7 @@ const MenuItem = ({
     isMounted,
     styles,
     setIsOpen,
-  } = useMenuItemOptions();
+  } = useFloatingOptions();
 
   const handleAddItem = (after: number) => {
     addItem(after);
@@ -77,6 +77,7 @@ const MenuItem = ({
       </div>
       {isMounted && (
         <div
+          className="z-50"
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}>

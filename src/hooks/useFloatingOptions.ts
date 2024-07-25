@@ -8,7 +8,7 @@ import {
   useTransitionStyles,
 } from '@floating-ui/react';
 
-const useMenuItemOptions = () => {
+const useFloatingOptions = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const { refs, context, floatingStyles } = useFloating({
@@ -41,4 +41,4 @@ const useMenuItemOptions = () => {
   };
 };
 
-export default useMenuItemOptions;
+export default useFloatingOptions;
