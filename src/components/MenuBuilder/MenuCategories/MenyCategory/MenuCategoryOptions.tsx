@@ -1,4 +1,3 @@
-import { CSSProperties } from 'react';
 import { Button, Dropdown } from 'react-daisyui';
 import {
   FiArrowDown,
@@ -9,32 +8,28 @@ import {
 } from 'react-icons/fi';
 
 type MenuCategoryOptionsProps = {
-  transitionStyles: CSSProperties;
   categoryAmount: number;
   categoryIndex: number;
-  addCategory: (after: number) => void;
+  insertCategory: (after: number) => void;
   removeCategory: (item: number) => void;
   moveCategory: (from: number, to: number) => void;
 };
 
 const MenuCategoryOptions = ({
-  transitionStyles,
   categoryAmount,
   categoryIndex,
-  addCategory,
+  insertCategory,
   removeCategory,
   moveCategory,
 }: MenuCategoryOptionsProps) => {
   return (
-    <div
-      className="p-2 flex flex-row gap-2 rounded"
-      style={{ ...transitionStyles }}>
+    <div className="p-2 flex flex-row gap-2 rounded">
       <Button
         type="button"
         size="xs"
         shape="square"
         color="ghost"
-        onClick={() => addCategory(categoryIndex + 1)}>
+        onClick={() => insertCategory(categoryIndex + 1)}>
         <FiPlus size={16} />
       </Button>
 

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {
   useFloating,
   useHover,
@@ -6,12 +6,13 @@ import {
   safePolygon,
   useInteractions,
   useTransitionStyles,
+  autoUpdate,
 } from '@floating-ui/react';
 
 const useFloatingOptions = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const { refs, context, floatingStyles } = useFloating({
+  const { refs, context, floatingStyles, elements, update } = useFloating({
     placement: 'left-start',
     strategy: 'fixed',
     open: isOpen,
@@ -28,7 +29,19 @@ const useFloatingOptions = () => {
     focus,
   ]);
 
-  const { isMounted, styles } = useTransitionStyles(context);
+  const { isMounted, styles } = useTransitionStyles(context, {
+    duration: {
+      open: 250,
+      close: 0,
+    },
+  });
+
+  useEffect(() => {
+    if (isOpen && elements.reference && elements.floating) {
+      const cleanup = autoUpdate(elements.reference, elements.floating, update);
+      return cleanup;
+    }
+  }, [isOpen, elements, update]);
 
   return {
     refs,
