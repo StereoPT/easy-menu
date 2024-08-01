@@ -2,12 +2,7 @@ import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import MenuItem from './MenuItem/MenuItem';
 
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  DropResult,
-} from '@hello-pangea/dnd';
+import { DragDropContext, Droppable, DropResult } from '@hello-pangea/dnd';
 
 type MenuItemsProps = {
   category: string;
@@ -30,38 +25,28 @@ const MenuItems = ({ category }: MenuItemsProps) => {
 
   return (
     <DragDropContext onDragEnd={onDragEnd}>
-      <div className="">
-        <Droppable droppableId="category-items">
-          {(provided) => (
-            <div
-              className="flex flex-col gap-2"
-              {...provided.droppableProps}
-              ref={provided.innerRef}>
-              {fields.map((field, index) => {
-                return (
-                  <Draggable
-                    key={`item[${index}]`}
-                    draggableId={`item-${index}`}
-                    index={index}>
-                    {(provided) => (
-                      <MenuItem
-                        key={field.id}
-                        category={category}
-                        itemIndex={index}
-                        itemAmount={fields.length}
-                        insertItem={insert}
-                        removeItem={remove}
-                        provided={provided}
-                      />
-                    )}
-                  </Draggable>
-                );
-              })}
-              <div>{provided.placeholder}</div>
-            </div>
-          )}
-        </Droppable>
-      </div>
+      <Droppable droppableId="category-items">
+        {(provided) => (
+          <div
+            className="flex flex-col gap-2"
+            {...provided.droppableProps}
+            ref={provided.innerRef}>
+            {fields.map((field, index) => {
+              return (
+                <MenuItem
+                  key={field.id}
+                  category={category}
+                  itemIndex={index}
+                  itemAmount={fields.length}
+                  insertItem={insert}
+                  removeItem={remove}
+                />
+              );
+            })}
+            <div>{provided.placeholder}</div>
+          </div>
+        )}
+      </Droppable>
     </DragDropContext>
   );
 };

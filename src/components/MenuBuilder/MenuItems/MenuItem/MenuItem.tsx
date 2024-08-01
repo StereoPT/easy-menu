@@ -8,7 +8,7 @@ import FormInput from '@/components/FormInput/FormInput';
 import MenuItemOptions from './MenuItemOptions';
 
 import useFloatingOptions from '@/hooks/useFloatingOptions';
-import { DraggableProvided } from '@hello-pangea/dnd';
+import { Draggable } from '@hello-pangea/dnd';
 import { cn } from '@/utils/cn';
 
 type MenuItemProps = {
@@ -17,7 +17,6 @@ type MenuItemProps = {
   itemAmount: number;
   insertItem: UseFieldArrayInsert<FieldValues, `${string}.items`>;
   removeItem: UseFieldArrayRemove;
-  provided: DraggableProvided;
 };
 
 const MenuItem = ({
@@ -26,7 +25,6 @@ const MenuItem = ({
   itemAmount,
   insertItem,
   removeItem,
-  provided,
 }: MenuItemProps) => {
   const {
     refs,
@@ -53,50 +51,57 @@ const MenuItem = ({
   };
 
   return (
-    <div ref={provided.innerRef} {...provided.draggableProps}>
-      <div
-        className="flex flex-col gap-2 w-full p-3 bg-neutral-100 rounded-xl"
-        ref={refs.setReference}
-        {...getReferenceProps()}>
-        <div className="flex justify-between gap-2">
-          <div className="flex flex-col gap-2 basis-2/3">
+    <Draggable
+      key={`item[${itemIndex}]`}
+      draggableId={`item-${itemIndex}`}
+      index={itemIndex}>
+      {(provided) => (
+        <div ref={provided.innerRef} {...provided.draggableProps}>
+          <div
+            className="flex flex-col gap-2 w-full p-3 bg-neutral-100 rounded-xl"
+            ref={refs.setReference}
+            {...getReferenceProps()}>
+            <div className="flex justify-between gap-2">
+              <div className="flex flex-col gap-2 basis-2/3">
+                <FormInput
+                  name={`${category}.items.${itemIndex}.name`}
+                  placeholder="Item Name"
+                  size="sm"
+                />
+              </div>
+              <div className="basis-1/3">
+                <FormInput
+                  name={`${category}.items.${itemIndex}.price`}
+                  placeholder="Price"
+                  size="sm"
+                />
+              </div>
+            </div>
             <FormInput
-              name={`${category}.items.${itemIndex}.name`}
-              placeholder="Item Name"
+              name={`${category}.items.${itemIndex}.description`}
+              placeholder="Item Description"
               size="sm"
             />
           </div>
-          <div className="basis-1/3">
-            <FormInput
-              name={`${category}.items.${itemIndex}.price`}
-              placeholder="Price"
-              size="sm"
-            />
+          <div
+            ref={refs.setFloating}
+            style={floatingStyles}
+            {...getFloatingProps()}>
+            <div
+              className={cn(isMounted ? 'block' : 'hidden')}
+              style={{ ...styles }}>
+              <MenuItemOptions
+                itemAmount={itemAmount}
+                itemIndex={itemIndex}
+                insertItem={handleInsertItem}
+                removeItem={handleRemoveItem}
+                dragHandleProps={provided.dragHandleProps}
+              />
+            </div>
           </div>
         </div>
-        <FormInput
-          name={`${category}.items.${itemIndex}.description`}
-          placeholder="Item Description"
-          size="sm"
-        />
-      </div>
-      <div
-        ref={refs.setFloating}
-        style={floatingStyles}
-        {...getFloatingProps()}>
-        <div
-          className={cn(isMounted ? 'block' : 'hidden')}
-          style={{ ...styles }}>
-          <MenuItemOptions
-            itemAmount={itemAmount}
-            itemIndex={itemIndex}
-            insertItem={handleInsertItem}
-            removeItem={handleRemoveItem}
-            dragHandleProps={provided.dragHandleProps}
-          />
-        </div>
-      </div>
-    </div>
+      )}
+    </Draggable>
   );
 };
 
