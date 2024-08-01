@@ -1,4 +1,6 @@
 import {
+  FieldValues,
+  UseFieldArrayInsert,
   UseFieldArrayMove,
   UseFieldArrayRemove,
   useWatch,
@@ -10,11 +12,12 @@ import FormInput from '@/components/FormInput/FormInput';
 
 import useFloatingOptions from '@/hooks/useFloatingOptions';
 import MenuCategoryOptions from './MenuCategoryOptions';
+import { cn } from '@/utils/cn';
 
 type MenuCategoryProps = {
   categoryIndex: number;
   categoryAmount: number;
-  addCategory: (after: number) => void;
+  insertCategory: UseFieldArrayInsert<FieldValues, 'categories'>;
   removeCategory: UseFieldArrayRemove;
   moveCategory: UseFieldArrayMove;
 };
@@ -22,7 +25,7 @@ type MenuCategoryProps = {
 const MenuCategory = ({
   categoryIndex,
   categoryAmount,
-  addCategory,
+  insertCategory,
   removeCategory,
   moveCategory,
 }: MenuCategoryProps) => {
@@ -38,8 +41,11 @@ const MenuCategory = ({
     setIsOpen,
   } = useFloatingOptions();
 
-  const handleAddCategory = (after: number) => {
-    addCategory(after);
+  const handleInsertCategory = (after: number) => {
+    insertCategory(after, {
+      name: '',
+      items: [{}],
+    });
     setIsOpen(false);
   };
 
@@ -80,14 +86,17 @@ const MenuCategory = ({
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps()}>
-          <MenuCategoryOptions
-            transitionStyles={styles}
-            categoryAmount={categoryAmount}
-            categoryIndex={categoryIndex}
-            addCategory={handleAddCategory}
-            removeCategory={handleRemoveCategory}
-            moveCategory={handleMoveCategory}
-          />
+          <div
+            className={cn(isMounted ? 'block' : 'hidden')}
+            style={{ ...styles }}>
+            <MenuCategoryOptions
+              categoryAmount={categoryAmount}
+              categoryIndex={categoryIndex}
+              insertCategory={handleInsertCategory}
+              removeCategory={handleRemoveCategory}
+              moveCategory={handleMoveCategory}
+            />
+          </div>
         </div>
       )}
     </>

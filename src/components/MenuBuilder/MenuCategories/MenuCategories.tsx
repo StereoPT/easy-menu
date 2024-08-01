@@ -9,13 +9,6 @@ const MenuCategories = () => {
     name: 'categories',
   });
 
-  const add = (after: number) => {
-    insert(after, {
-      name: '',
-      items: [{}],
-    });
-  };
-
   return (
     <div className="flex flex-col gap-2">
       {fields.map((field, index) => {
@@ -24,7 +17,7 @@ const MenuCategories = () => {
             key={field.id}
             categoryIndex={index}
             categoryAmount={fields.length}
-            addCategory={add}
+            insertCategory={insert}
             removeCategory={remove}
             moveCategory={move}
           />

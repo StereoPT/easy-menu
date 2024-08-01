@@ -15,7 +15,7 @@ type MenuItemsProps = {
 
 const MenuItems = ({ category }: MenuItemsProps) => {
   const { control } = useFormContext();
-  const { fields, move, remove, insert } = useFieldArray({
+  const { fields, move, insert, remove } = useFieldArray({
     control,
     name: `${category}.items`,
   });
@@ -26,14 +26,6 @@ const MenuItems = ({ category }: MenuItemsProps) => {
     }
 
     move(source.index, destination.index);
-  };
-
-  const add = (after: number) => {
-    insert(after, {
-      name: '',
-      description: '',
-      price: 0,
-    });
   };
 
   return (
@@ -57,7 +49,7 @@ const MenuItems = ({ category }: MenuItemsProps) => {
                         category={category}
                         itemIndex={index}
                         itemAmount={fields.length}
-                        addItem={add}
+                        insertItem={insert}
                         removeItem={remove}
                         provided={provided}
                       />

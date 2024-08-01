@@ -5,7 +5,7 @@ import { FiMove, FiPlus, FiTrash2 } from 'react-icons/fi';
 type MenuItemOptionProps = {
   itemAmount: number;
   itemIndex: number;
-  addItem: (after: number) => void;
+  insertItem: (after: number) => void;
   removeItem: (item: number) => void;
   dragHandleProps: DraggableProvidedDragHandleProps | null;
 };
@@ -13,7 +13,7 @@ type MenuItemOptionProps = {
 const MenuItemOptions = ({
   itemAmount,
   itemIndex,
-  addItem,
+  insertItem,
   removeItem,
   dragHandleProps,
 }: MenuItemOptionProps) => {
@@ -24,7 +24,7 @@ const MenuItemOptions = ({
         size="xs"
         shape="square"
         color="ghost"
-        onClick={() => addItem(itemIndex + 1)}>
+        onClick={() => insertItem(itemIndex + 1)}>
         <FiPlus size={16} />
       </Button>
       <Button

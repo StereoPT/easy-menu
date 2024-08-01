@@ -1,4 +1,8 @@
-import { UseFieldArrayRemove } from 'react-hook-form';
+import {
+  FieldValues,
+  UseFieldArrayInsert,
+  UseFieldArrayRemove,
+} from 'react-hook-form';
 
 import FormInput from '@/components/FormInput/FormInput';
 import MenuItemOptions from './MenuItemOptions';
@@ -11,7 +15,7 @@ type MenuItemProps = {
   category: string;
   itemIndex: number;
   itemAmount: number;
-  addItem: (after: number) => void;
+  insertItem: UseFieldArrayInsert<FieldValues, `${string}.items`>;
   removeItem: UseFieldArrayRemove;
   provided: DraggableProvided;
 };
@@ -20,7 +24,7 @@ const MenuItem = ({
   category,
   itemIndex,
   itemAmount,
-  addItem,
+  insertItem,
   removeItem,
   provided,
 }: MenuItemProps) => {
@@ -34,8 +38,12 @@ const MenuItem = ({
     setIsOpen,
   } = useFloatingOptions();
 
-  const handleAddItem = (after: number) => {
-    addItem(after);
+  const handleInsertItem = (after: number) => {
+    insertItem(after, {
+      name: '',
+      description: '',
+      price: 0,
+    });
     setIsOpen(false);
   };
 
@@ -82,7 +90,7 @@ const MenuItem = ({
           <MenuItemOptions
             itemAmount={itemAmount}
             itemIndex={itemIndex}
-            addItem={handleAddItem}
+            insertItem={handleInsertItem}
             removeItem={handleRemoveItem}
             dragHandleProps={provided.dragHandleProps}
           />
