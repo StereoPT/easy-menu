@@ -1,30 +1,13 @@
-import dynamic from 'next/dynamic';
 import { useFieldArray, useFormContext } from 'react-hook-form';
 
 import MenuItem from './MenuItem/MenuItem';
 
-const DragDropContext = dynamic(
-  () => import('@hello-pangea/dnd').then((mod) => mod.DragDropContext),
-  {
-    ssr: false,
-  },
-);
-
-const Droppable = dynamic(
-  () => import('@hello-pangea/dnd').then((mod) => mod.Droppable),
-  {
-    ssr: false,
-  },
-);
-
-const Draggable = dynamic(
-  () => import('@hello-pangea/dnd').then((mod) => mod.Draggable),
-  {
-    ssr: false,
-  },
-);
-
-import { DropResult } from '@hello-pangea/dnd';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DropResult,
+} from '@hello-pangea/dnd';
 
 type MenuItemsProps = {
   category: string;
@@ -76,7 +59,6 @@ const MenuItems = ({ category }: MenuItemsProps) => {
                         itemAmount={fields.length}
                         addItem={add}
                         removeItem={remove}
-                        moveItem={move}
                         provided={provided}
                       />
                     )}

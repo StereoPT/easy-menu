@@ -15,7 +15,6 @@ const useFloatingOptions = () => {
   const { refs, context, floatingStyles, elements, update } = useFloating({
     placement: 'left-start',
     strategy: 'fixed',
-    whileElementsMounted: autoUpdate,
     open: isOpen,
     onOpenChange: setIsOpen,
   });

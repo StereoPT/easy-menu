@@ -1,4 +1,4 @@
-import { UseFieldArrayMove, UseFieldArrayRemove } from 'react-hook-form';
+import { UseFieldArrayRemove } from 'react-hook-form';
 
 import FormInput from '@/components/FormInput/FormInput';
 import MenuItemOptions from './MenuItemOptions';
@@ -13,7 +13,6 @@ type MenuItemProps = {
   itemAmount: number;
   addItem: (after: number) => void;
   removeItem: UseFieldArrayRemove;
-  moveItem: UseFieldArrayMove;
   provided: DraggableProvided;
 };
 
@@ -23,7 +22,6 @@ const MenuItem = ({
   itemAmount,
   addItem,
   removeItem,
-  moveItem,
   provided,
 }: MenuItemProps) => {
   const {
@@ -43,11 +41,6 @@ const MenuItem = ({
 
   const handleRemoveItem = (item: number) => {
     removeItem(item);
-    setIsOpen(false);
-  };
-
-  const handleMoveItem = (from: number, to: number) => {
-    moveItem(from, to);
     setIsOpen(false);
   };
 
@@ -79,20 +72,22 @@ const MenuItem = ({
           size="sm"
         />
       </div>
-      <div
-        className={cn('hidden z-50', isMounted && 'block')}
-        ref={refs.setFloating}
-        style={floatingStyles}
-        {...getFloatingProps()}
-        {...provided.dragHandleProps}>
-        <MenuItemOptions
-          transitionStyles={styles}
-          itemAmount={itemAmount}
-          itemIndex={itemIndex}
-          addItem={handleAddItem}
-          removeItem={handleRemoveItem}
-          moveItem={handleMoveItem}
-        />
+      <div {...getFloatingProps()}>
+        <div
+          className={cn(isMounted ? 'block' : 'hidden')}
+          ref={refs.setFloating}
+          style={floatingStyles}>
+          <div style={styles}>
+            <MenuItemOptions
+              transitionStyles={{}}
+              itemAmount={itemAmount}
+              itemIndex={itemIndex}
+              addItem={handleAddItem}
+              removeItem={handleRemoveItem}
+              dragHandleProps={provided.dragHandleProps}
+            />
+          </div>
+        </div>
       </div>
     </div>
   );
