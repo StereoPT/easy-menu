@@ -4,6 +4,8 @@ import FormInput from '@/components/FormInput/FormInput';
 import MenuItemOptions from './MenuItemOptions';
 
 import useFloatingOptions from '@/hooks/useFloatingOptions';
+import { DraggableProvided } from '@hello-pangea/dnd';
+import { cn } from '@/utils/cn';
 
 type MenuItemProps = {
   category: string;
@@ -12,6 +14,7 @@ type MenuItemProps = {
   addItem: (after: number) => void;
   removeItem: UseFieldArrayRemove;
   moveItem: UseFieldArrayMove;
+  provided: DraggableProvided;
 };
 
 const MenuItem = ({
@@ -21,6 +24,7 @@ const MenuItem = ({
   addItem,
   removeItem,
   moveItem,
+  provided,
 }: MenuItemProps) => {
   const {
     refs,
@@ -48,7 +52,7 @@ const MenuItem = ({
   };
 
   return (
-    <>
+    <div ref={provided.innerRef} {...provided.draggableProps}>
       <div
         className="flex flex-col gap-2 w-full p-3 bg-neutral-100 rounded-xl"
         ref={refs.setReference}
@@ -75,23 +79,22 @@ const MenuItem = ({
           size="sm"
         />
       </div>
-      {isMounted && (
-        <div
-          className="z-50"
-          ref={refs.setFloating}
-          style={floatingStyles}
-          {...getFloatingProps()}>
-          <MenuItemOptions
-            transitionStyles={styles}
-            itemAmount={itemAmount}
-            itemIndex={itemIndex}
-            addItem={handleAddItem}
-            removeItem={handleRemoveItem}
-            moveItem={handleMoveItem}
-          />
-        </div>
-      )}
-    </>
+      <div
+        className={cn('hidden z-50', isMounted && 'block')}
+        ref={refs.setFloating}
+        style={floatingStyles}
+        {...getFloatingProps()}
+        {...provided.dragHandleProps}>
+        <MenuItemOptions
+          transitionStyles={styles}
+          itemAmount={itemAmount}
+          itemIndex={itemIndex}
+          addItem={handleAddItem}
+          removeItem={handleRemoveItem}
+          moveItem={handleMoveItem}
+        />
+      </div>
+    </div>
   );
 };
 
