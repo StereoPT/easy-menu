@@ -72,21 +72,20 @@ const MenuItem = ({
           size="sm"
         />
       </div>
-      <div {...getFloatingProps()}>
+      <div
+        ref={refs.setFloating}
+        style={floatingStyles}
+        {...getFloatingProps()}>
         <div
           className={cn(isMounted ? 'block' : 'hidden')}
-          ref={refs.setFloating}
-          style={floatingStyles}>
-          <div style={styles}>
-            <MenuItemOptions
-              transitionStyles={{}}
-              itemAmount={itemAmount}
-              itemIndex={itemIndex}
-              addItem={handleAddItem}
-              removeItem={handleRemoveItem}
-              dragHandleProps={provided.dragHandleProps}
-            />
-          </div>
+          style={{ ...styles }}>
+          <MenuItemOptions
+            itemAmount={itemAmount}
+            itemIndex={itemIndex}
+            addItem={handleAddItem}
+            removeItem={handleRemoveItem}
+            dragHandleProps={provided.dragHandleProps}
+          />
         </div>
       </div>
     </div>

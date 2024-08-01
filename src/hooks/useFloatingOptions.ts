@@ -29,7 +29,12 @@ const useFloatingOptions = () => {
     focus,
   ]);
 
-  const { isMounted, styles } = useTransitionStyles(context);
+  const { isMounted, styles } = useTransitionStyles(context, {
+    duration: {
+      open: 250,
+      close: 0,
+    },
+  });
 
   useEffect(() => {
     if (isOpen && elements.reference && elements.floating) {

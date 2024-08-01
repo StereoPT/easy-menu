@@ -1,10 +1,8 @@
 import { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd';
-import { CSSProperties } from 'react';
 import { Button } from 'react-daisyui';
 import { FiMove, FiPlus, FiTrash2 } from 'react-icons/fi';
 
 type MenuItemOptionProps = {
-  transitionStyles: CSSProperties;
   itemAmount: number;
   itemIndex: number;
   addItem: (after: number) => void;
@@ -13,7 +11,6 @@ type MenuItemOptionProps = {
 };
 
 const MenuItemOptions = ({
-  transitionStyles,
   itemAmount,
   itemIndex,
   addItem,
@@ -21,9 +18,7 @@ const MenuItemOptions = ({
   dragHandleProps,
 }: MenuItemOptionProps) => {
   return (
-    <div
-      className="p-2 flex flex-row gap-1 rounded"
-      style={{ ...transitionStyles }}>
+    <div className="p-2 flex flex-row gap-1 rounded">
       <Button
         type="button"
         size="xs"
