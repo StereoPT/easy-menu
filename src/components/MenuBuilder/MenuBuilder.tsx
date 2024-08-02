@@ -50,10 +50,10 @@ const MenuBuilder = () => {
   return (
     <>
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onFormSubmit)}>
+        <form className="px-8 py-8 mt-16" onSubmit={handleSubmit(onFormSubmit)}>
           <Navbar />
-          <main className="flex flex-col items-center gap-16 p-8 mt-16">
-            <div className="flex flex-col gap-4 w-[600px]">
+          <main className="flex flex-col items-center gap-16">
+            <div className="flex flex-col gap-4 w-[350px] sm:w-[600px]">
               <div>
                 <h2 className="card-title">Create Menu</h2>
                 <p className="mb-4">

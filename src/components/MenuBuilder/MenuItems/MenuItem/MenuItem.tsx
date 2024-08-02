@@ -61,7 +61,7 @@ const MenuItem = ({
             className="flex flex-col gap-2 w-full p-3 bg-neutral-100 rounded-xl"
             ref={refs.setReference}
             {...getReferenceProps()}>
-            <div className="flex justify-between gap-2">
+            <div className="flex flex-col lg:flex-row justify-between gap-2">
               <div className="flex flex-col gap-2 basis-2/3">
                 <FormInput
                   name={`${category}.items.${itemIndex}.name`}

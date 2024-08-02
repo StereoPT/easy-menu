@@ -18,7 +18,7 @@ const MenuItemOptions = ({
   dragHandleProps,
 }: MenuItemOptionProps) => {
   return (
-    <div className="p-2 flex flex-row gap-1 rounded">
+    <div className="p-2 flex flex-col lg:flex-row gap-1 rounded">
       <Button
         type="button"
         size="xs"

@@ -10,6 +10,7 @@ import { FiAlertCircle, FiChevronLeft } from 'react-icons/fi';
 import { usePDF } from '@react-pdf/renderer';
 import MenuPDF from '@/components/MenuPDF/MenuPDF';
 import { cn } from '@/utils/cn';
+import { useWindowSize } from 'usehooks-ts';
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   'pdfjs-dist/build/pdf.worker.min.mjs',
@@ -17,6 +18,8 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 ).toString();
 
 const MenuPreview = () => {
+  const { width = 0 } = useWindowSize();
+
   const setShowPreview = useSetAtom(previewAtom);
   const [instance] = usePDF({ document: MenuPDF() });
 
@@ -61,7 +64,7 @@ const MenuPreview = () => {
                 Something went Wrong!
               </Alert>
             }>
-            <Page pageNumber={1} height={720} />
+            <Page pageNumber={1} width={width - 50 > 520 ? 520 : width - 50} />
           </Document>
         </div>
       </div>
