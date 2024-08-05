@@ -11,8 +11,8 @@ const Navbar = () => {
           <Image
             src="/images/logo.png"
             alt="Website Logo"
-            width={32}
-            height={32}
+            width={24}
+            height={24}
           />
           Easy-Menu
         </Button>

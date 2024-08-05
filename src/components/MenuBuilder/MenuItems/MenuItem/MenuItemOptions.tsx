@@ -1,3 +1,4 @@
+import { cn } from '@/utils/cn';
 import { DraggableProvidedDragHandleProps } from '@hello-pangea/dnd';
 import { Button } from 'react-daisyui';
 import { FiMove, FiPlus, FiTrash2 } from 'react-icons/fi';
@@ -27,15 +28,16 @@ const MenuItemOptions = ({
         onClick={() => insertItem(itemIndex + 1)}>
         <FiPlus size={16} />
       </Button>
-      <Button
-        type="button"
-        size="xs"
-        shape="square"
-        color="error"
-        disabled={itemAmount <= 1}
-        onClick={() => removeItem(itemIndex)}>
-        <FiTrash2 size={16} />
-      </Button>
+      {itemAmount > 1 && (
+        <Button
+          type="button"
+          size="xs"
+          shape="square"
+          color="error"
+          onClick={() => removeItem(itemIndex)}>
+          <FiTrash2 size={16} />
+        </Button>
+      )}
       <Button
         type="button"
         size="xs"
