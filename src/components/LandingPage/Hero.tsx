@@ -13,7 +13,7 @@ const Hero = () => {
           className="font-bold text-sm text-white"
           size="lg"
           color="primary">
-          Alpha now Available!
+          Alpha v.2.0 now Available!
         </Badge>
         <div className="flex flex-col items-center gap-4">
           <h1 className="text-4xl sm:text-5xl font-bold">

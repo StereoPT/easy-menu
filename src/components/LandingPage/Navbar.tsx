@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { Badge, Button, Navbar as DaisyNavbar, Indicator } from 'react-daisyui';
 import { FiBell } from 'react-icons/fi';
 
@@ -7,6 +8,12 @@ const Navbar = () => {
       <DaisyNavbar.Start></DaisyNavbar.Start>
       <DaisyNavbar.Center>
         <Button color="ghost" className="normal-case text-xl">
+          <Image
+            src="/images/logo.png"
+            alt="Website Logo"
+            width={24}
+            height={24}
+          />
           Easy-Menu
         </Button>
       </DaisyNavbar.Center>

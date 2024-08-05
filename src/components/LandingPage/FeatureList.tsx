@@ -19,17 +19,16 @@ const FeatureList = () => {
               <p>Intuitive interface for </p>
               <p>quick and easy list creation.</p>
             </Feature>
+            <Feature title="PDF Preview">
+              <p>Preview your list before downloading.</p>
+            </Feature>
             <Feature title="Simple Design">
               <p>Clean, user-friendly design.</p>
-            </Feature>
-            <Feature title="Alpha Version">
-              <p>Early access with the latest</p>
-              <p>features and updates.</p>
             </Feature>
             <Feature title="Multi Categories">
               <p>Categorize items for better organization.</p>
             </Feature>
-            <Feature title="Manage Items">
+            <Feature title="Drag & Drop">
               <p>Easily add, edit, delete </p>
               <p>and organize your items.</p>
             </Feature>
