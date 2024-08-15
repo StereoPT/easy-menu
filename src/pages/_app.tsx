@@ -26,6 +26,10 @@ const App = ({ Component, pageProps }: AppPropsWithLayout) => {
       <Head>
         <title>Easy-Menu</title>
         <meta
+          name="google-site-verification"
+          content="bTXDUFvgcFMN9QwQFBKi2vSmdiVxWiOJLuBtD6OhWno"
+        />
+        <meta
           name="description"
           content="Easy Menu is a cutting-edge web application that empowers businesses to create stunning, professional-grade PDF pricing lists with unparalleled ease."
         />
